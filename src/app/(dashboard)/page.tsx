@@ -17,7 +17,7 @@ export default function Dashboard() {
   return (
     <div className="p-4 min-h-screen" style={{ background: "#ececec" }}>
       {/* Tabs */}
-      <div className="bg-white rounded-2xl shadow-md mb-4 pt-2 px-2">
+      {/* <div className="bg-white rounded-2xl shadow-md mb-4 pt-2 px-2">
         <div
           className="grid grid-cols-4 gap-1 w-full text-sm font-medium"
           role="tablist"
@@ -45,7 +45,7 @@ export default function Dashboard() {
             );
           })}
         </div>
-      </div>
+      </div> */}
 
       {/* OVERVIEW TAB CONTENT */}
       {activeTab === "overview" && (
