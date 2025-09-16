@@ -14,9 +14,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [pageLoaded, setPageLoaded] = useState(true);
   
   // Multi-step login state
   const [step, setStep] = useState(1); // 1 for username, 2 for password
+
+  // Set page as loaded after a short delay
+  // React.useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setPageLoaded(true);
+  //   }, 50); // Very short delay to prevent flicker
+
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   // Forgot password/username states
   const [showForgotUsername, setShowForgotUsername] = useState(false);
@@ -138,6 +148,18 @@ const LoginPage = () => {
       <Toaster richColors position="top-center" />
       <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
         <div className="relative w-full max-w-md flex items-center justify-center">
+          {/* Loading state */}
+          {!pageLoaded && (
+            <div className="absolute inset-0 flex items-center justify-center z-40">
+              <div className="bg-white rounded-3xl p-10 shadow-2xl">
+                <div className="w-64 h-16 bg-gray-200 animate-pulse rounded-lg mb-8"></div>
+                <div className="text-center">
+                  <div className="w-32 h-8 bg-gray-200 animate-pulse rounded mx-auto mb-2"></div>
+                  <div className="w-48 h-4 bg-gray-200 animate-pulse rounded mx-auto"></div>
+                </div>
+              </div>
+            </div>
+          )}
           {/* Layered shadow effect - only at bottom */}
           <div
             className="absolute inset-0 bg-[#ced4da] rounded-3xl transform translate-y-4 z-20"
@@ -156,7 +178,7 @@ const LoginPage = () => {
           {/* <div className="absolute inset-0 bg-blue-600 rounded-3xl transform translate-y-9 z-20"></div> */}
 
           {/* Main login card */}
-          <div className="relative bg-white rounded-3xl p-10 shadow-2xl z-30">
+          <div className={`relative bg-white rounded-3xl p-10 shadow-2xl z-30 transition-opacity duration-300 ${pageLoaded ? 'opacity-100' : 'opacity-0'}`}>
             {/* Logo */}
             <div className="text-center mb-8">
               <img
