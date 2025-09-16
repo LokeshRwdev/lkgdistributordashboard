@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, ChevronDown, User } from "lucide-react";
+import CustomLkgLogo from "./icon/svg-icons/CustomLkgLogo";
+import { CustomApple } from "./icon/svg-icons";
+import CustomHome from "./icon/svg-icons/CustomHome";
 
 type MenuItem = {
   label: string;
@@ -92,24 +95,25 @@ const Sidebar = () => {
     <aside
       className={` ${
         collapsed ? "w-16" : "w-72"
-      } bg-[#1b478d] text-white p-0 flex flex-col h-full transition-all duration-300 ease-in-out overflow-hidden`}
+      } bg-[#1b478d] text-white p-0 flex flex-col h-full transition-all duration-300 ease-in-out overflow-hidden py-6`}
     >
       {/* Logo Section */}
-      <div className="p-6 border-b border-blue-500">
-        <div className="flex items-center mb-4">
-          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
+      <div className="px-3 py-5 flex flex-col gap-5">
+        <div className="flex items-center mb-1">
+          {/* <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center mr-3 flex-shrink-0">
             <span className="text-blue-600 font-bold text-lg">L</span>
-          </div>
+          </div> */}
           <div
             className={`${
               collapsed ? "opacity-0" : "opacity-100"
             } transition-opacity duration-300 whitespace-nowrap`}
           >
-            <h2 className="text-white font-bold text-lg">LKG INFOSOLUTION</h2>
+            {/* <h2 className="text-white font-bold text-lg">LKG INFOSOLUTION</h2> */}
+            <CustomLkgLogo/>
           </div>
         </div>
         <div
-          className={`bg-blue-700 rounded-lg px-3 py-1 inline-block ${
+          className={`py-1 inline-block ${
             collapsed ? "opacity-0" : "opacity-100"
           } transition-opacity duration-300`}
         >
@@ -122,9 +126,11 @@ const Sidebar = () => {
         <div className="px-4 mb-6">
           <Link
             href="/"
-            className="flex items-center py-3 px-4 rounded-lg bg-blue-700 text-white hover:bg-blue-600 transition-colors"
+            className="flex items-center py-3 px-4 rounded-lg  text-white hover:bg-blue-600 transition-colors"
           >
-            <span className="mr-3 flex-shrink-0">🏠</span>
+            <span className="mr-3 flex-shrink-0">
+              <CustomHome/>
+            </span>
             <span
               className={`${
                 collapsed ? "opacity-0" : "opacity-100"

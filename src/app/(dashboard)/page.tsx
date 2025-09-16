@@ -15,9 +15,10 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="p-4 min-h-screen" style={{ background: "#ececec" }}>
-      {/* Tabs */}
-      {/* <div className="bg-white rounded-2xl shadow-md mb-4 pt-2 px-2">
+    <>
+      <div className="px-4 min-h-screen scrollbar-hide" style={{ background: "#ececec" }}>
+        {/* Tabs */}
+        <div className="bg-white rounded-2xl shadow-md mb-4  w-[50%]">
         <div
           className="grid grid-cols-4 gap-1 w-full text-sm font-medium"
           role="tablist"
@@ -34,9 +35,9 @@ export default function Dashboard() {
                 aria-controls={`tab-panel-${t.key}`}
                 id={`tab-${t.key}`}
                 onClick={() => setActiveTab(t.key)}
-                className={`h-10 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black/40 ${
+                className={`h-12 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-black/40 ${
                   isActive
-                    ? "bg-black text-white shadow"
+                    ? "bg-[#3386FF] text-white shadow"
                     : "text-gray-600 hover:text-black bg-transparent"
                 }`}
               >
@@ -45,7 +46,7 @@ export default function Dashboard() {
             );
           })}
         </div>
-      </div> */}
+      </div>
 
       {/* OVERVIEW TAB CONTENT */}
       {activeTab === "overview" && (
@@ -354,6 +355,17 @@ export default function Dashboard() {
           </div>
         </>
       )}
-    </div>
+      </div>
+      
+      <style jsx global>{`
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none !important;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none !important;
+          scrollbar-width: none !important;
+        }
+      `}</style>
+    </>
   );
-}
+} 

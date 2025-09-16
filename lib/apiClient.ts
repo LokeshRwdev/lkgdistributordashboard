@@ -2,7 +2,7 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 
 
 const axiosInstance = axios.create({
-  baseURL: `https://auth-uat.bhugtan.in`,
+  baseURL: `https://distributor-uat.bhugtan.in`,
   headers: {
     'Content-Type': 'application/json',
   },
