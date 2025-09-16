@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -8,21 +8,20 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "LKG Dashboard",
-  description: "Dashboard for LKG",
+  title: "Login - LKG Dashboard",
+  description: "Login to LKG Dashboard",
 };
 
-export default function RootLayout({
+export default function LoginLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className}`}>
+      <body className={`${poppins.className} bg-gray-900`}>
         {children}
       </body>
     </html>
   );
 }
-
