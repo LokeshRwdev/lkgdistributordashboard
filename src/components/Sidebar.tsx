@@ -3,10 +3,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronLeft, ChevronRight, ChevronDown, User } from "lucide-react";
+import { ChevronLeft, ChevronRight, ChevronDown, User, LogOut } from "lucide-react";
 import CustomLkgLogo from "./icon/svg-icons/CustomLkgLogo";
-import { CustomApple } from "./icon/svg-icons";
 import CustomHome from "./icon/svg-icons/CustomHome";
+import CustomBalanceIcon from "./icon/svg-icons/CustomBalanceIcon";
+import CustomReport from "./icon/svg-icons/CustomReport";
+import CustomSupportTicket from "./icon/svg-icons/CustomSupprtTicket";
 
 type MenuItem = {
   label: string;
@@ -95,7 +97,7 @@ const Sidebar = () => {
     <aside
       className={` ${
         collapsed ? "w-16" : "w-72"
-      } bg-[#1b478d] text-white p-0 flex flex-col h-full transition-all duration-300 ease-in-out overflow-hidden py-6`}
+      } bg-[#1b478d] text-white p-0 flex flex-col h-full transition-all duration-300 ease-in-out overflow-scroll py-6 scrollbar-hide`}
     >
       {/* Logo Section */}
       <div className="px-3 py-5 flex flex-col gap-5">
@@ -109,7 +111,7 @@ const Sidebar = () => {
             } transition-opacity duration-300 whitespace-nowrap`}
           >
             {/* <h2 className="text-white font-bold text-lg">LKG INFOSOLUTION</h2> */}
-            <CustomLkgLogo/>
+            <CustomLkgLogo />
           </div>
         </div>
         <div
@@ -129,12 +131,12 @@ const Sidebar = () => {
             className="flex items-center py-3 px-4 rounded-lg  text-white hover:bg-blue-600 transition-colors"
           >
             <span className="mr-3 flex-shrink-0">
-              <CustomHome/>
+              <CustomHome />
             </span>
             <span
               className={`${
                 collapsed ? "opacity-0" : "opacity-100"
-              } transition-opacity duration-300 whitespace-nowrap`}
+              } font-medium text-blue-100 transition-opacity duration-300 whitespace-nowrap`}
             >
               Dashboard
             </span>
@@ -167,28 +169,55 @@ const Sidebar = () => {
 
         {/* Manage Balances Group */}
         <CollapsibleMenuGroup
-          icon={<span className="text-lg" role="img" aria-label="wallet">💰</span>}
+          icon={<CustomBalanceIcon />}
           label="Manage Balances"
           collapsed={collapsed}
           items={[
             { label: "Add Fund", href: "/manage-balance/add-funds" },
-            { label: "Downline Request", href: "/manage-balance/downline-fund-request" },
-            { label: "Self Fund Request list", href: "/manage-balance/manual-refund" },
+            {
+              label: "Downline Request",
+              href: "/manage-balance/downline-fund-request",
+            },
+            {
+              label: "Self Fund Request list",
+              href: "/manage-balance/manual-refund",
+            },
             { label: "Revoke Balance", href: "/manage-balance/revoke" },
             { label: "Transfer Balance", href: "/manage-balance/transfer" },
           ]}
         />
+         <div className="px-4 mb-6">
+        
+          <ul className="space-y-1">
+            <li>
+              <Link
+                href="/support-ticket"
+                className="font-medium flex items-center py-3 px-4 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
+              >
+                <span className="mr-3">
+                  <CustomSupportTicket/>
+                </span>
+                Support Ticket
+              </Link>
+            </li>
+          </ul>
+        </div>
+        
 
         {/* Reports Section */}
         <div className="px-4 mb-6">
-          <h3 className="text-blue-200 text-sm font-semibold mb-3 px-4">Reports</h3>
+          <h3 className="text-blue-200 text-sm font-semibold mb-3 px-4">
+            Reports
+          </h3>
           <ul className="space-y-1">
             <li>
-              <Link 
-                href="/reports" 
-                className="flex items-center py-3 px-4 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
+              <Link
+                href="/reports"
+                className="font-medium flex items-center py-3 px-4 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
               >
-                <span className="mr-3">📊</span>
+                <span className="mr-3">
+                  <CustomReport/>
+                </span>
                 Report & Analytics
               </Link>
             </li>
@@ -212,7 +241,9 @@ const Sidebar = () => {
                 href="/login"
                 className="flex items-center py-3 px-4 rounded-lg text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
               >
-                <span className="mr-3 flex-shrink-0">🚪</span>
+                <span className="mr-3 flex-shrink-0 rotate-180">
+                  <LogOut/>
+                </span>
                 <span
                   className={`${
                     collapsed ? "opacity-0" : "opacity-100"
@@ -227,7 +258,7 @@ const Sidebar = () => {
       </nav>
 
       {/* Expand/Collapse control */}
-      <div className="p-4 border-t border-blue-700 mt-auto">
+      {/* <div className="p-4 border-t border-blue-700 mt-auto">
         <button
           onClick={() => setCollapsed(!collapsed)}
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
@@ -246,7 +277,7 @@ const Sidebar = () => {
             {collapsed ? "" : "Collapse"}
           </span>
         </button>
-      </div>
+      </div> */}
     </aside>
   );
 };

@@ -2,7 +2,6 @@ import * as React from "react";
 interface SVGProps extends React.SVGProps<SVGSVGElement> {
   // You can add any custom props here if needed
 }
-
 const CustomHome: React.FC<SVGProps> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +13,7 @@ const CustomHome: React.FC<SVGProps> = (props) => (
     {...props}
   >
     <mask
-      id="mask0_3155_11969"
+      id="mask0_3309_20230"
       style={{
         maskType: "alpha",
       }}
@@ -24,9 +23,9 @@ const CustomHome: React.FC<SVGProps> = (props) => (
       width={18}
       height={20}
     >
-      <rect width={17.9487} height={19.2824} fill="url(#pattern0_3155_11969)" />
+      <rect width={17.9487} height={19.2824} fill="url(#pattern0_3309_20230)" />
     </mask>
-    <g mask="url(#mask0_3155_11969)">
+    <g mask="url(#mask0_3309_20230)">
       <rect
         x={-4.72266}
         y={-4.53906}
@@ -37,18 +36,18 @@ const CustomHome: React.FC<SVGProps> = (props) => (
     </g>
     <defs>
       <pattern
-        id="pattern0_3155_11969"
+        id="pattern0_3309_20230"
         patternContentUnits="objectBoundingBox"
         width={1}
         height={1}
       >
         <use
-          xlinkHref="#image0_3155_11969"
+          xlinkHref="#image0_3309_20230"
           transform="matrix(0.00704225 0 0 0.00719424 0.0633803 0.0503597)"
         />
       </pattern>
       <image
-        id="image0_3155_11969"
+        id="image0_3309_20230"
         width={128}
         height={128}
         preserveAspectRatio="none"

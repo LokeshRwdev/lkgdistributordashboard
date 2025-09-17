@@ -16,3 +16,4 @@ export { default as CustomSwift } from './CustomSwift';
 export { default as CustomTurkey } from './CustomTurkey';
 export { default as CustomUsa } from './CustomUsa';
 export { default as CustomYarn } from './CustomYarn';
+export { default as CustomActiveIconGreen, CustomActiveIconBlue, CustomActiveIconYellow } from './CustomActiveIcon';
