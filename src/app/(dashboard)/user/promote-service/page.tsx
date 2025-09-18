@@ -11,6 +11,9 @@ import { FilterIcon } from "lucide-react";
 export default function PromoteServicePage() {
   const router = useRouter();
   const [showTickets, setShowTickets] = React.useState(false);
+  const [showFilter, setShowFilter] = React.useState(false);
+  const [statusFilter, setStatusFilter] = React.useState("");
+  const [dateFilter, setDateFilter] = React.useState("");
 
   const requests = Array.from({ length: 2 }).map((_, i) => ({
     id: i + 1,
@@ -23,6 +26,7 @@ export default function PromoteServicePage() {
   }));
 
   return (
+    <>
     <div className="p-6">
       {/* Top title with back arrow */}
       <div className="flex items-center gap-2 text-gray-800 mb-8 ml-2">
@@ -112,7 +116,10 @@ export default function PromoteServicePage() {
                 </select>
               </div>
             </div>
-            <button className="inline-flex items-center gap-2 h-9 px-8 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs shadow-sm hover:bg-gray-50">
+            <button
+              onClick={() => setShowFilter(true)}
+              className="inline-flex items-center gap-2 h-9 px-8 rounded-xl bg-white border border-gray-300 text-gray-700 text-xs shadow-sm hover:bg-gray-50"
+            >
               {/* <span className="w-4 h-4 rounded-full border border-gray-400 flex items-center justify-center text-[10px]">
                 ⚲
               </span> */}
@@ -172,5 +179,75 @@ export default function PromoteServicePage() {
         </div>
       )}
     </div>
+    {showFilter && (
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div
+          className="absolute inset-0 bg-black/40"
+          onClick={() => setShowFilter(false)}
+        />
+        <div className="relative bg-white rounded-2xl w-full max-w-md p-6 shadow-2xl z-50">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-[#3386FF] font-semibold">Filter</h3>
+            <button
+              aria-label="Close"
+              onClick={() => setShowFilter(false)}
+              className="text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className="space-y-5">
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Status</label>
+              <select
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+                className="w-full h-10 bg-gray-50 border border-gray-200 rounded-lg px-3 text-sm"
+              >
+                <option value="">Any</option>
+                <option value="ACCEPTED">ACCEPTED</option>
+                <option value="REJECTED">REJECTED</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Date</label>
+              <select
+                value={dateFilter}
+                onChange={(e) => setDateFilter(e.target.value)}
+                className="w-full h-10 bg-gray-50 border border-gray-200 rounded-lg px-3 text-sm"
+              >
+                <option value="">Any</option>
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+              </select>
+            </div>
+
+            <div className="flex items-center justify-between pt-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setStatusFilter("");
+                  setDateFilter("");
+                }}
+                className="px-5 py-2 rounded-lg border border-[#3386FF] text-[#3386FF] bg-white"
+              >
+                Reset
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowFilter(false)}
+                className="px-5 py-2 rounded-lg bg-[#3386FF] text-white"
+              >
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
+
