@@ -162,7 +162,7 @@ const Sidebar = () => {
           items={[
             { label: "List of User", href: "/user/list" },
             { label: "Create New User", href: "/user" },
-            // { label: "Promote Service", href: "/user/promote-service" },
+            { label: "Promote Service", href: "/user/promote-service" },
             // { label: "Manage Services", href: "/user/manage-services" },
           ]}
         />
