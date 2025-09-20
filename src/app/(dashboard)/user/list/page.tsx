@@ -92,7 +92,7 @@ export default function UserListPage() {
 								<span>Filter</span>
 							</button>
 							<Link
-								href="/user/create"
+								href="/user/"
 								className="inline-flex items-center gap-2 bg-[#3386FF] text-white px-6 py-3 rounded-xl hover:bg-black/90 text-sm font-medium"
 							>
 								<Plus className="w-4 h-4" />

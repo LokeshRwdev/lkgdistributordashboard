@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import CustomArrowLeft from "@/components/icon/svg-icons/CustomLeftArrow";
+import { createDistributorAccount } from "../../../../lib/api/user";
 
 export default function CreateNewUser() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function CreateNewUser() {
     panCardNo: "",
     agreeTerms: false,
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -43,9 +45,47 @@ export default function CreateNewUser() {
     setFormData((prev) => ({ ...prev, userType: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    if (submitting) return;
+    setSubmitting(true);
+
+    // Map frontend form to API payload shape
+    const mapUserType = (val: string) => val.replace(/\s+/g, '_').toUpperCase();
+    const payload = {
+      user_type: mapUserType(formData.userType),
+      name: formData.fullName,
+      mobile: formData.mobileNo,
+      email: formData.email,
+      dob: formData.dateOfBirth, // already YYYY-MM-DD from input[type=date]
+      gender: formData.gender.toUpperCase(),
+      pan_number: formData.panCardNo.toUpperCase().trim(),
+      accepted_terms: formData.agreeTerms,
+    };
+
+    try {
+      const res = await createDistributorAccount(payload);
+      if (res) {
+        console.log('User created successfully:', res);
+        // Optionally navigate or reset form
+        // router.push('/some-success-page')
+        setFormData(prev => ({
+          ...prev,
+          fullName: '',
+          email: '',
+          mobileNo: '',
+          dateOfBirth: '',
+          panCardNo: '',
+          agreeTerms: false,
+        }));
+      } else {
+        console.error('User creation failed');
+      }
+    } catch (err) {
+      console.error('Error creating user:', err);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   // Enable submit only when all required fields are filled and terms agreed
@@ -107,6 +147,12 @@ export default function CreateNewUser() {
                 <SelectValue placeholder="Select user type" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem
+                  value="Retailer"
+                  className="data-[state=checked]:bg-gray-800 data-[state=checked]:text-white"
+                >
+                  Retailer
+                </SelectItem>
                 <SelectItem
                   value="Distributor"
                   className="data-[state=checked]:bg-gray-800 data-[state=checked]:text-white"
@@ -240,10 +286,10 @@ export default function CreateNewUser() {
             <div className="flex justify-end pt-6">
               <button
                 type="submit"
-                disabled={!isFormValid}
+                disabled={!isFormValid || submitting}
                 className="bg-[#3286fe] text-white px-16 py-2 rounded-lg font-medium transition-colors hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-[#3286fe]"
               >
-                Submit
+                {submitting ? 'Submitting...' : 'Submit'}
               </button>
             </div>
           </form>
